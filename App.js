@@ -1,20 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, ScrollView, Button, SafeAreaView } from 'react-native';
+import Box from './components/Box';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <SafeAreaView>
+      <View style={styles.container}>
+      <View style={{flexDirection: 'row', elevation: 3, paddingHorizontal: 20, display: 'flex', alignItems: 'center', height: 80, width: '100%'}}>
+        <Image source={require('./assets/icon.png')} style={{width: 46, height: 46}}></Image>
+        <View style={{ marginLeft: 20}}>
+          <Text style={{color: 'red', fontWeight: 700}}>Andika</Text>
+          <Text >Personal Account</Text>
+        </View>
+        <View style={{flex: 1}}>
+
+        </View>
+        <Image source={require('./assets/splash-icon.png')} style={{width: 46, height: 46}}></Image>
+      </View>
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
-  },
+    alignItems: 'center',
+  }
 });
