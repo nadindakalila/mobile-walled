@@ -4,24 +4,7 @@ import React, {useState} from 'react';
 export default function Form() {
   const [text, onChangeText] = useState('Useless Text');
   const [number, onChangeNumber] = useState('');
-  const [errors, setErrors] = useState({}); // untuk mengatur error masing2 form
-  const validate = () => { // function validasi untk mengatur jika user tidak mengisi input
-    let errors = {};
-    if (!text) {
-      errors.text = 'Text is required';
-    }
-    if (!number) {
-      errors.number = 'Number is required';
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
 
-  const handleSubmit = () => { // validasi
-    if (validate()) {
-      alert('Form submitted successfully!');
-    }
-  };
   return (
       <SafeAreaView style={styles.container}>
         <TextInput
@@ -29,7 +12,6 @@ export default function Form() {
           onChangeText={onChangeText}
           value={text}
         />
-        {errors.text && <Text style={styles.errorText}>{errors.text}</Text>}
         <TextInput
           style={styles.input}
           onChangeText={onChangeNumber} // Menangkap perubahan dari inputan user secara real time
@@ -38,7 +20,7 @@ export default function Form() {
           keyboardType="numeric" // Untuk menentukan tipe keyboard.
           secureTextEntry // Digunakan untuk menyembunyikan input (misalnya untuk password)
         />
-        <Button title="Submit" onPress={handleSubmit} />
+        <Button title="Submit" />
       </SafeAreaView>
   );
 }
