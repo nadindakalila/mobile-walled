@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, TextInput, Button, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, TextInput, Button, CheckBox } from 'react-native';
 import React, {useState} from 'react';
 
 export default function Form() {
@@ -19,7 +19,16 @@ export default function Form() {
           placeholder="useless placeholder" // Menampilkan teks sementara yang memberi petunjuk kepada pengguna tentang input yang diharapkan
           keyboardType="numeric" // Untuk menentukan tipe keyboard.
           secureTextEntry // Digunakan untuk menyembunyikan input (misalnya untuk password)
+          autoCorrect={false} // Untuk menonaktifkan koreksi otomatis
+          autoCapitalize="none" // Untuk menonaktifkan kapitalisasi otomatis
         />
+        <TextInput
+        style={[styles.input, styles.multiline]}
+        placeholder='Komentar'
+        multiline // Untuk mengaktifkan multiline
+        numberOfLines={4} // Menentukan jumlah baris yang ditampilkan
+        >
+        </TextInput>
         <Button title="Submit" />
       </SafeAreaView>
   );
@@ -34,7 +43,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   input: {
-    width: '100%',
+    width: 200,
     height: 50,
     borderColor: '#ddd',
     borderWidth: 1,
@@ -47,5 +56,8 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginBottom: 10,
-  }
+  },
+  multiline: {
+    height: 100,
+  },
 });
