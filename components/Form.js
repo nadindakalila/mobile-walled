@@ -1,9 +1,11 @@
-import { StyleSheet, SafeAreaView, TextInput, Button, CheckBox } from 'react-native';
+import { StyleSheet, SafeAreaView, TextInput, Button, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 
 export default function Form() {
   const [text, onChangeText] = useState('Useless Text');
   const [number, onChangeNumber] = useState('');
+
+  const [isSelected, setSelection] = useState(false);
 
   return (
       <SafeAreaView style={styles.container}>
@@ -29,6 +31,14 @@ export default function Form() {
         numberOfLines={4} // Menentukan jumlah baris yang ditampilkan
         >
         </TextInput>
+      <TouchableOpacity
+        style={styles.checkboxContainer}
+        onPress={() => setSelection(!isSelected)}
+      >
+        <View style={[styles.checkbox, isSelected && styles.checkedCheckbox]} />
+        <Text style={styles.label}>I agree to the terms and conditions</Text>
+      </TouchableOpacity>
+      <Text>Is CheckBox selected: {isSelected ? '👍' : '👎'}</Text>
         <Button title="Submit" />
       </SafeAreaView>
   );
@@ -60,4 +70,22 @@ const styles = StyleSheet.create({
   multiline: {
     height: 100,
   },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  checkbox: {
+    height: 24,
+    width: 24,
+    borderWidth: 2,
+    borderColor: '#000',
+    marginRight: 8,
+  },
+  checkedCheckbox: {
+    backgroundColor: '#4CAF50',
+  },
+  label: {
+    fontSize: 16,
+  },
+
 });
