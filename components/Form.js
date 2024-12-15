@@ -1,27 +1,18 @@
-import { StyleSheet, SafeAreaView, TextInput, Button, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, TextInput, Button, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 
 export default function Form() {
   const [text, onChangeText] = useState('');
   const [number, onChangeNumber] = useState('');
-  const [errors, setErrors] = useState({}); // untuk mengatur error masing2 form
-  const validate = () => { // function validasi untk mengatur jika user tidak mengisi input
-    let errors = {};
-    if (!text) {
-      errors.text = 'Text is required';
-    }
-    if (!number) {
-      errors.number = 'Number is required';
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = () => { // mengatur kondisi jika semuanya berhasil
     if (validate()) {
       alert('Form submitted successfully!');
     }
   };
+  const [isSelected, setSelection] = useState(false);
+
   return (
       <SafeAreaView style={styles.container}>
         <TextInput
@@ -45,7 +36,22 @@ export default function Form() {
           autoCorrect={false} // Untuk menonaktifkan koreksi otomatis
           autoCapitalize="none" // Untuk menonaktifkan kapitalisasi otomatis
         />
-        <Button title="Submit" onPress={handleSubmit} />
+        <TextInput
+        style={[styles.input, styles.multiline]}
+        placeholder='Komentar'
+        multiline // Untuk mengaktifkan multiline
+        numberOfLines={4} // Menentukan jumlah baris yang ditampilkan
+        >
+        </TextInput>
+      <TouchableOpacity
+        style={styles.checkboxContainer}
+        onPress={() => setSelection(!isSelected)}
+      >
+        <View style={[styles.checkbox, isSelected && styles.checkedCheckbox]} />
+        <Text style={styles.label}>I agree to the terms and conditions</Text>
+      </TouchableOpacity>
+      <Text>Is CheckBox selected: {isSelected ? '👍' : '👎'}</Text>
+        <Button title="Submit" />
       </SafeAreaView>
   );
 }
@@ -72,5 +78,26 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginBottom: 10,
-  }
+  },
+  multiline: {
+    height: 100,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  checkbox: {
+    height: 24,
+    width: 24,
+    borderWidth: 2,
+    borderColor: '#000',
+    marginRight: 8,
+  },
+  checkedCheckbox: {
+    backgroundColor: '#4CAF50',
+  },
+  label: {
+    fontSize: 16,
+  },
+
 });
