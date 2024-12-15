@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ImageBackground, ScrollView, Button, Saf
 import Box from './components/Box';
 import Form from './components/Form';
 import React, {useState} from 'react';
+import ModalComp from './components/Modal';
 
 
 
@@ -10,6 +11,7 @@ export default function App() {
   return (
       <SafeAreaView style={styles.container}>
         <Form></Form>
+        <ModalComp></ModalComp>
       </SafeAreaView>
   );
 }
