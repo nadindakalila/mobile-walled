@@ -2,7 +2,7 @@ import { StyleSheet, SafeAreaView, TextInput, Button, Text } from 'react-native'
 import React, {useState} from 'react';
 
 export default function Form() {
-  const [text, onChangeText] = useState('Useless Text');
+  const [text, onChangeText] = useState('');
   const [number, onChangeNumber] = useState('');
   const [errors, setErrors] = useState({}); // untuk mengatur error masing2 form
   const validate = () => { // function validasi untk mengatur jika user tidak mengisi input
@@ -17,7 +17,7 @@ export default function Form() {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = () => { // validasi
+  const handleSubmit = () => { // mengatur kondisi jika semuanya berhasil
     if (validate()) {
       alert('Form submitted successfully!');
     }
@@ -29,7 +29,12 @@ export default function Form() {
           onChangeText={onChangeText}
           value={text}
         />
-        {errors.text && <Text style={styles.errorText}>{errors.text}</Text>}
+        {errors.text && 
+          <Text style={styles.errorText}>
+            {errors.text}
+          </Text>
+          // menampilkan error jika user tidak mengisi input
+        } 
         <TextInput
           style={styles.input}
           onChangeText={onChangeNumber} // Menangkap perubahan dari inputan user secara real time
@@ -37,6 +42,8 @@ export default function Form() {
           placeholder="useless placeholder" // Menampilkan teks sementara yang memberi petunjuk kepada pengguna tentang input yang diharapkan
           keyboardType="numeric" // Untuk menentukan tipe keyboard.
           secureTextEntry // Digunakan untuk menyembunyikan input (misalnya untuk password)
+          autoCorrect={false} // Untuk menonaktifkan koreksi otomatis
+          autoCapitalize="none" // Untuk menonaktifkan kapitalisasi otomatis
         />
         <Button title="Submit" onPress={handleSubmit} />
       </SafeAreaView>
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   input: {
-    width: '100%',
+    width: 200,
     height: 50,
     borderColor: '#ddd',
     borderWidth: 1,
