@@ -1,25 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackground, ScrollView, Button, SafeAreaView, Switch } from 'react-native';
-import Box from './components/Box';
-import Form from './components/Form';
 import React, {useState} from 'react';
-import ModalComp from './components/Modal';
+import HomeScreen from './screens/Home'
+import LoginScreen from './screens/Login'
 
 
+import { NavigationContainer } from '@react-navigation/native'; 
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-      <SafeAreaView style={styles.container}>
-        <Form></Form>
-        <ModalComp></ModalComp>
-      </SafeAreaView>
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName='Login'
+    >
+      <Stack.Screen 
+        name="Home" 
+        component={HomeScreen}
+      /> 
+      <Stack.Screen name="Login" component={LoginScreen} 
+        options={{
+          headerShown: false // menghilangkan header
+        }}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
+};
