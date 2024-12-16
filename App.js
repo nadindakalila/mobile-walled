@@ -13,11 +13,29 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='Login'
+    <Stack.Navigator initialRouteName='Home'
     >
       <Stack.Screen 
         name="Home" 
         component={HomeScreen}
+        options={{
+          // headerShown: false // menghilangkan header,
+          title: 'Ini Header Custom',
+          headerStyle: {
+            backgroundColor: 'purple'
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          },
+          headerRight: () => {
+            <Button 
+              title='Menu'
+              onPress={() => alert('Menu shown')}
+              color='white'
+            />
+          }
+        }}
       /> 
       <Stack.Screen name="Login" component={LoginScreen} 
         options={{
