@@ -20,6 +20,25 @@ export default function App() {
         component={HomeScreen}
         options={{
           // headerShown: false // menghilangkan header,
+          headerStyle: {
+            backgroundColor: 'purple'
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          },
+          headerRight: () => (
+            <Button
+              onPress={() => alert('Button Pressed!')}
+              title="Info"
+              color="#000"
+            />
+          ),
+        }}
+      /> 
+      <Stack.Screen name="Login" component={LoginScreen} 
+        options={{
+          // headerShown: false // menghilangkan header,
           title: 'Ini Header Custom',
           headerStyle: {
             backgroundColor: 'purple'
@@ -29,17 +48,13 @@ export default function App() {
             fontWeight: 'bold'
           },
           headerRight: () => {
-            <Button 
-              title='Menu'
-              onPress={() => alert('Menu shown')}
-              color='white'
-            />
+            // <Button 
+            //   title='Menu'
+            //   onPress={() => alert('Menu shown')}
+            //   color='white'
+            // />
+            <Text>Menu</Text>
           }
-        }}
-      /> 
-      <Stack.Screen name="Login" component={LoginScreen} 
-        options={{
-          headerShown: false // menghilangkan header
         }}
       />
     </Stack.Navigator>

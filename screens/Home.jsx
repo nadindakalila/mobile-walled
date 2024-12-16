@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
+  Button
 } from "react-native";
 
 export default function HomeScreen({ navigation }) {
@@ -17,6 +18,10 @@ export default function HomeScreen({ navigation }) {
         flex: 1,
       }}
     >
+      <Button 
+        title='Click to login!'
+        onPress={() => navigation.navigate('Login')}
+      />
       <View>
         {/* <NavHeader navigation={navigation}>
           <Text>Transfer</Text>
